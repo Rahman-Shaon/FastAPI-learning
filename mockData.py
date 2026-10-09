@@ -1,12 +1,14 @@
 products = [
     {
         "id" : 1,
-        "name" : "Phone",
-        "price" : 30000
+        "title" : "Phone",
+        "price" : 30000,
+        "count": 10
     },
     {
         "id" : 2,
-        "name" : "Laptop",
-        "price" : 70000
+        "title" : "Laptop",
+        "price" : 70000,
+        "count": 12
     }
 ]

@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from mockData import products
+from dtos import ProductDTO
 
 app = FastAPI()
 
@@ -38,8 +39,45 @@ def productlist(product_id:int):
 
 
 
+# @app.get("/greet")
+# def greet_user(name:str, age:int):
+#     return{
+#         "greet": f"Hello {name}, Your age is {age}"
+#     }
+
+
+
 @app.get("/greet")
-def greet_user(name:str, age:int):
+def greet_user(request:Request):
+    query_params = request.query_params
+
     return{
-        "greet": f"Hello {name}, Your age is {age}"
+        "greet": f"Hello {query_params.get("name")}, Your age is{query_params.get("age")}"
     }
+
+
+# data ki ki vabe pathano jai? -->> body, headers - request headers, query params
+
+
+
+## differnt type of HTTP methods
+
+@app.post("/create_product")
+def create_product(product_data:ProductDTO):
+    # print(product_data)
+    product_data = product_data.model_dump()
+    # print(product_data)
+    products.append(product_data)
+
+    return {"status":"Product Created Successfully...", "data":products}
+
+
+
+
+## pydentic
+
+
+## Postman
+# How to call different HTTP Methods. - Any tool?
+
+# how to dalidate data -- DTOS
