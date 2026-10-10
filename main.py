@@ -74,6 +74,32 @@ def create_product(product_data:ProductDTO):
 
 
 
+@app.put("/update_product/{product_id}")
+def update_product(product_data:ProductDTO, product_id:int):
+
+    for index, oneProduct in enumerate(products):
+        if oneProduct.get("id") == product_id:
+            products[index] = product_data
+            return {"status":"Product Updated Successfully..", "Product":product_data}
+
+    return {"error":"Product not found fo rthis id"}
+
+
+
+@app.delete("/delete_product/{product_id}")
+def delete_product(product_id:int):
+    for index, oneProduct in enumerate(products):
+        if oneProduct.get("id") == product_id:
+            deleted_product = products.pop(index)
+            return {"status":"Product deleted successfully..", "product":delete_product}
+
+    return {"error":"Product not found fo rthis id"}
+
+
+
+
+
+
 ## pydentic
 
 
